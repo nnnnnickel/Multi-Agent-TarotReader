@@ -1,0 +1,9 @@
+langchain
+langchain-openai
+langgraph
+openai
+pandas
+pyarrow
+python-dotenv
+jieba
+rank-bm25
