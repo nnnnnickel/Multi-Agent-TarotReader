@@ -1,5 +1,9 @@
 # Multi-agent Tarot Reader 
 
+*__Interpreting a card isn't necessarily about knowing an answer or knowing what's to come.  It's about being open to communication from a deeper part of ourselves.__*
+
+—— *Tarot for the Wild Soul*, Lindsay Mack
+
 ## 项目概述
 一个实现塔罗+占星解读的多智能体项目。提出问题并提供牌面后，系统会结合知识图谱、会话记忆，及当日星座运势等生成解读。
 
