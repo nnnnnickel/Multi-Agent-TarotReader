@@ -38,3 +38,6 @@ READER_MODEL_NAME = <gpt-4o-mini>
 ```powershell
 python -B -m app.web_server
 ```
+
+## 演示视频
+<video src="https://github.com/user-attachments/assets/af4fa511-134a-4b39-aed2-f50cf4e49452" controls></video>
