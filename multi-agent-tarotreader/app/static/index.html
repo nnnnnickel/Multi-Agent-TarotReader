@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="由智能代理驱动、支持抽牌与连续追问的中文塔罗解读工具。"
+    />
+    <title>Agentic Tarot｜智能塔罗解读</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="control-panel" aria-label="塔罗解读设置">
+        <div class="brand-row">
+          <div class="mark" aria-hidden="true">A</div>
+          <div>
+            <h1>Agentic Tarot</h1>
+            <p>智能代理工作流塔罗解读</p>
+          </div>
+        </div>
+
+        <form id="reading-form" class="reading-form">
+          <label for="question">你的问题</label>
+          <textarea
+            id="question"
+            name="question"
+            rows="4"
+            maxlength="2000"
+            placeholder="例如：我最近的感情状态如何？接下来应该关注什么？"
+            required
+          ></textarea>
+
+          <label for="cards">牌面</label>
+          <div class="cards-source-row" role="group" aria-label="选择牌面来源">
+            <button type="button" id="draw-source" class="source-button active">
+              ✦ 在线抽牌
+            </button>
+            <button type="button" id="manual-source" class="source-button">
+              ✎ 手动输入
+            </button>
+          </div>
+
+          <div id="draw-panel" class="draw-panel">
+            <div class="draw-controls">
+              <button type="button" id="draw-button" class="draw-button">
+                ✦ 抽一张牌
+              </button>
+            </div>
+            <div id="drawn-cards" class="drawn-cards" aria-live="polite">
+              <p class="draw-hint">可连续抽取，抽几张就解读几张</p>
+            </div>
+            <p id="cards-summary" class="cards-summary" hidden></p>
+          </div>
+
+          <textarea
+            id="cards"
+            name="cards"
+            rows="4"
+            maxlength="2000"
+            class="manual-cards hidden"
+            placeholder="例如：月亮、女皇逆位、命运之轮"
+          ></textarea>
+
+          <div class="mode-row" role="group" aria-label="选择解读模式">
+            <button type="button" id="new-reading" class="mode-button active">
+              新解读
+            </button>
+            <button type="button" id="followup" class="mode-button">追问或补牌</button>
+          </div>
+
+          <div class="action-row">
+            <button type="submit" id="submit-button" class="primary-button">
+              发送
+            </button>
+            <button type="button" id="exit-button" class="ghost-button">退出</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="chat-panel" aria-label="塔罗对话记录">
+        <div class="chat-header">
+          <div>
+            <h2>解读记录</h2>
+            <p id="status-text" aria-live="polite">等待你的问题</p>
+          </div>
+          <div class="header-actions">
+            <button
+              type="button"
+              id="help-button"
+              class="help-button"
+              aria-haspopup="dialog"
+            >
+              ? 使用说明
+            </button>
+            <div class="spread-preview" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+        <div id="chat-log" class="chat-log" aria-live="polite">
+          <article class="empty-state">
+            <h3>开始一次塔罗解读</h3>
+            <p>
+              写下问题并抽取或输入牌面。首次解读需要牌面，之后可直接继续追问。
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div
+      id="intro-overlay"
+      class="intro-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="intro-title"
+    >
+      <div class="intro-backdrop" data-close-intro></div>
+      <div class="intro-modal">
+        <button
+          type="button"
+          class="intro-close"
+          data-close-intro
+          aria-label="关闭使用说明"
+        >
+          ×
+        </button>
+        <div class="intro-mark" aria-hidden="true">✦</div>
+        <h2 id="intro-title">欢迎使用 Agentic Tarot</h2>
+        <p class="intro-sub">这是一个由智能代理驱动的塔罗解读工具：</p>
+        <ul class="intro-list">
+          <li>
+            <span class="intro-icon">❓</span>
+            <div>
+              <strong>提出问题</strong><br />
+              在左侧写下你希望获得启发或梳理的事情。
+            </div>
+          </li>
+          <li>
+            <span class="intro-icon">🔮</span>
+            <div>
+              <strong>抽牌或输入牌面</strong><br />
+              可以在线连续抽牌，也可以手动填写已经抽好的牌组。
+            </div>
+          </li>
+          <li>
+            <span class="intro-icon">📝</span>
+            <div>
+              <strong>新解读与追问</strong><br />
+              首次使用“新解读”；得到回答后可继续追问或补牌。
+            </div>
+          </li>
+          <li>
+            <span class="intro-icon">⛔️</span>
+            <div>
+              <strong>结束会话</strong><br />
+              点击“退出”会清除本次会话记忆；若浏览器没有自动关闭，请手动关闭页面。
+            </div>
+          </li>
+        </ul>
+        <button type="button" class="intro-start" data-close-intro>
+          开始使用
+        </button>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
